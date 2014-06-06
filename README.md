@@ -1,4 +1,3 @@
-ktrsemss13
+Actor Based Code Offloading on Android Smartphones in Real-Time
 ==========
 
-KTR Seminar
