@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>KTRSemGlassfishEAR</name>
+	<name>dynOff-GlassfishEAR</name>
 	<comment></comment>
 	<projects>
-		<project>KTRSemGlassfishWeb</project>
-		<project>KTRSemGlassfishEJB</project>
+		<project>dynOff-GlassfishWeb</project>
+		<project>dynOff-GlassfishEJB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
