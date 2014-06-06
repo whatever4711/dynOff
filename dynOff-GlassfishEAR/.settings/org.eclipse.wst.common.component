@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="KTRSemGlassfishEAR">
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="dynOff-GlassfishEAR">
         <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
-        <dependent-module archiveName="KTRSemGlassfishWeb.war" deploy-path="/" handle="module:/resource/KTRSemGlassfishWeb/KTRSemGlassfishWeb">
+        <dependent-module archiveName="dynOff-GlassfishWeb.war" deploy-path="/" handle="module:/resource/dynOff-GlassfishWeb/dynOff-GlassfishWeb">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="KTRSemGlassfishEJB.jar" deploy-path="/" handle="module:/resource/KTRSemGlassfishEJB/KTRSemGlassfishEJB">
+        <dependent-module archiveName="dynOff-GlassfishEJB.jar" deploy-path="/" handle="module:/resource/dynOff-GlassfishEJB/dynOff-GlassfishEJB">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>

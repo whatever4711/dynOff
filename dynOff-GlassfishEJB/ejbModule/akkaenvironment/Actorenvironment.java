@@ -30,42 +30,42 @@ import akkaenvironment.wrapper.PropsPreAvailableWrapper;
 public class Actorenvironment {
 
 	/**
-	 * Ausführungssystem der Aktoren
+	 * Ausfï¿½hrungssystem der Aktoren
 	 */
 	private ActorSystem actorsys;
 
 	/**
-	 * Enthält alle aktiven Aktorreferenzen, Shared Memory mit
+	 * Enthï¿½lt alle aktiven Aktorreferenzen, Shared Memory mit
 	 * AsyncMailboxActor.
 	 */
 	private ConcurrentHashMap<String, ActorRefTimeWrapper> actorRefTable;
 
 	/**
-	 * Enthält alle fertigen, asynchronen Antworten, Shared Memory mit
+	 * Enthï¿½lt alle fertigen, asynchronen Antworten, Shared Memory mit
 	 * AsyncMailboxActor.
 	 */
 	private ConcurrentHashMap<String, JobTimeWrapper> jobsTable;
 
 	/**
-	 * Enthält alle explizit vorgehaltenen Props-Instanzen für die
+	 * Enthï¿½lt alle explizit vorgehaltenen Props-Instanzen fï¿½r die
 	 * Aktorerzeugung
 	 */
 	private ConcurrentHashMap<String, PropsPreAvailableWrapper> actorPreTable;
 
 	/**
-	 * Referenz auf den Aktor für die Verwaltung von asynchronen Nachrichten
+	 * Referenz auf den Aktor fï¿½r die Verwaltung von asynchronen Nachrichten
 	 */
 	private ActorRef asyncActor;
 
 	/**
-	 * Vorhaltezeit in Millisekunden für Aktorreferenzen und asynchrone
+	 * Vorhaltezeit in Millisekunden fï¿½r Aktorreferenzen und asynchrone
 	 * Nachrichten. Wird an asyncActor beim initialen Programmstart mit
-	 * AsyncMailboxActorIniMsg übergeben und in ihm nochmals gehalten.
+	 * AsyncMailboxActorIniMsg ï¿½bergeben und in ihm nochmals gehalten.
 	 */
 	private long storageTime = 600000;
 
 	/**
-	 * Constructor für die Instanziierung durch die Java EE-Laufzeitumgebung.
+	 * Constructor fï¿½r die Instanziierung durch die Java EE-Laufzeitumgebung.
 	 * Legt alle Tabellen an und initialisiert den AsyncMailboxActor.
 	 */
 	public Actorenvironment() {
@@ -73,7 +73,7 @@ public class Actorenvironment {
 		actorsys = ActorSystem.create();
 		actorRefTable = new ConcurrentHashMap<>();
 		jobsTable = new ConcurrentHashMap<>();
-		Props async = new Props(AsyncMailboxActor.class);
+		Props async = Props.create(AsyncMailboxActor.class);
 		asyncActor = actorsys.actorOf(async);
 		asyncActor.tell(new AsyncMailboxActorIniMsg(jobsTable, actorRefTable,
 				storageTime), null);
@@ -82,19 +82,19 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * Erstellt die Inhalte von actorPreTable. Muss aktuell noch händisch
-	 * angepasst werden, sollten weitere Aktoren hinzugefügt werden müssen.
+	 * Erstellt die Inhalte von actorPreTable. Muss aktuell noch hï¿½ndisch
+	 * angepasst werden, sollten weitere Aktoren hinzugefï¿½gt werden mï¿½ssen.
 	 */
 	private void generateActorPreTable() {
 		actorPreTable.put(TestActor.class.getName(),
 				new PropsPreAvailableWrapper(TestActor.class.getName(),
-						"Testactor für Echotest mit String", new Props(
+						"Testactor fï¿½r Echotest mit String", Props.create(
 								TestActor.class)));
 	}
 
 	/**
-	 * Erzeugt aus der übergebenen Props-Instanz einen Aktor und gibt dessen
-	 * Identifikationsstring zurück.
+	 * Erzeugt aus der ï¿½bergebenen Props-Instanz einen Aktor und gibt dessen
+	 * Identifikationsstring zurï¿½ck.
 	 * 
 	 * @param props
 	 *            Props-Instanz aus der Class-Instanz des Aktors
@@ -110,7 +110,7 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * Sendet eine Nachricht mit synchroner Antwort an einen Aktor. Läuft die
+	 * Sendet eine Nachricht mit synchroner Antwort an einen Aktor. Lï¿½uft die
 	 * Wartezeit ab, wird eine Exception geworfen.
 	 * 
 	 * @param actorid
@@ -145,7 +145,7 @@ public class Actorenvironment {
 
 	/**
 	 * Leitet einen asynchronen Auftrag weiter und gibt einen
-	 * Jobidentifikationsstring zurück, für den Abruf des Ergebnisses über
+	 * Jobidentifikationsstring zurï¿½ck, fï¿½r den Abruf des Ergebnisses ï¿½ber
 	 * getAsyncJobResult(String).
 	 * 
 	 * @param actorId
@@ -177,7 +177,7 @@ public class Actorenvironment {
 	 *            Jobidentifikationsstring
 	 * @return Antwortobjekt
 	 * @throws Exception
-	 *             Wird geworfen wenn keine Antwort für den
+	 *             Wird geworfen wenn keine Antwort fï¿½r den
 	 *             Jobidentifikationsstring vorhanden ist.
 	 */
 	public Object getAsyncJobResult(String jobId) {
@@ -190,7 +190,7 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * Löscht alle Aktorreferenzen und Ergebnisnachrichten, deren Vorhaltezeit
+	 * Lï¿½scht alle Aktorreferenzen und Ergebnisnachrichten, deren Vorhaltezeit
 	 * abgelaufen ist.
 	 */
 	public void cleanup() {
@@ -212,7 +212,7 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * Gibt die actorPreTable zurück.
+	 * Gibt die actorPreTable zurï¿½ck.
 	 * 
 	 * @return actorPreTable
 	 */
@@ -224,7 +224,7 @@ public class Actorenvironment {
 	 * Erzeugt einen Aktor aus den in actorPreTable vorhaltenen Props-Instanzen
 	 * 
 	 * @param propsid
-	 *            Vollqualifizierender Name der Aktorklasse, erhältlich über
+	 *            Vollqualifizierender Name der Aktorklasse, erhï¿½ltlich ï¿½ber
 	 *            getActorPreTable()
 	 * @return Aktoridentifikationsstring
 	 */

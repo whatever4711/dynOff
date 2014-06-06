@@ -18,7 +18,7 @@ import akkaenvironment.actors.TestMessage;
 public class TestMain {
 
 	private WebServiceAccessStub stub = new WebServiceAccessStub();
-	private String testmsg = "lkasödlfjpowierlksdjfölaskdjfpoiwerksdjfaölsdjfpoweiru";
+	private String testmsg = "lkasï¿½dlfjpowierlksdjfï¿½laskdjfpoiwerksdjfaï¿½lsdjfpoweiru";
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			IOException, ServerFault_Exception {
@@ -112,7 +112,7 @@ public class TestMain {
 		System.out.println("======================================");
 		byte[] tmp = null;
 
-		tmp = SerializationHelper.serialize(new Props(TestActor.class));
+		tmp = SerializationHelper.serialize(Props.create(TestActor.class));
 
 		String actorid = "Actor generation from Props failed!";
 
