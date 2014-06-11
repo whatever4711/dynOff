@@ -20,7 +20,7 @@ import akkaenvironment.Actorenvironment;
 import akkaenvironment.wrapper.PropsPreAvailableWrapper;
 
 /**
- * Nach JAX-WS annotierte Klasse für die Erzeugung des Webserviceendpunktes.
+ * Nach JAX-WS annotierte Klasse fï¿½r die Erzeugung des Webserviceendpunktes.
  */
 @WebService
 public class WebServiceAccess {
@@ -66,7 +66,7 @@ public class WebServiceAccess {
 	 *            In JobMessage gekapselte Nachricht
 	 * @return Serialisiertes Antwortobjekt
 	 * @throws ServerFault
-	 *             Exception für die die Fehlerübertragung per JAX-WS
+	 *             Exception fï¿½r die die Fehlerï¿½bertragung per JAX-WS
 	 */
 	@WebMethod
 	@WebResult(name = "resultmessage")
@@ -94,7 +94,7 @@ public class WebServiceAccess {
 	 *            In JobMessageAsync gekapselte Nachricht
 	 * @return Postkastenreferenzstring
 	 * @throws ServerFault
-	 *             Exception für die die Fehlerübertragung per JAX-WS
+	 *             Exception fï¿½r die die Fehlerï¿½bertragung per JAX-WS
 	 */
 	@WebMethod
 	@WebResult(name = "jobid")
@@ -118,7 +118,7 @@ public class WebServiceAccess {
 	 *            Postkastenreferenzstring
 	 * @return Serialisiertes Antwortobjekt
 	 * @throws ServerFault
-	 *             Exception für die die Fehlerübertragung per JAX-WS
+	 *             Exception fï¿½r die die Fehlerï¿½bertragung per JAX-WS
 	 */
 	@WebMethod
 	@WebResult(name = "resultmessage")
@@ -138,7 +138,7 @@ public class WebServiceAccess {
 	}
 
 	/**
-	 * Überträgt die Inhalte von actorPreTable aus Actorenvironment
+	 * ï¿½bertrï¿½gt die Inhalte von actorPreTable aus Actorenvironment
 	 * 
 	 * @return actorPreTable aus Actorenvironment
 	 */
@@ -158,11 +158,11 @@ public class WebServiceAccess {
 	 * Erzeugt einen Aktor aus den in actorPreTable vorhaltenen Props-Instanzen
 	 * 
 	 * @param propsid
-	 *            Vollqualifizierender Name der Aktorklasse, erhältlich über
+	 *            Vollqualifizierender Name der Aktorklasse, erhï¿½ltlich ï¿½ber
 	 *            getActorPreTable()
 	 * @return Aktoridentifikationsstring
 	 * @throws ServerFault
-	 *             Exception für die die Fehlerübertragung per JAX-WS
+	 *             Exception fï¿½r die die Fehlerï¿½bertragung per JAX-WS
 	 */
 	@WebMethod
 	@WebResult(name = "actorid")

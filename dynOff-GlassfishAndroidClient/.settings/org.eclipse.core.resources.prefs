@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/webservice/JobMessage.java=UTF-8
+encoding//src/webservice/JobMessageAsync.java=UTF-8
+encoding//src/webservice/PropsPreAvailableMessage.java=UTF-8
+encoding//src/webservice/ServerFault.java=UTF-8
+encoding//src/webservice/WebServiceAccess.java=UTF-8
+encoding//src/webservice/WebServiceAccessPortBindingStub.java=UTF-8
+encoding//src/webservice/WebServiceAccessService.java=UTF-8
+encoding//src/webservice/WebServiceAccessServiceLocator.java=UTF-8

@@ -18,7 +18,7 @@ import akkaenvironment.actors.TestMessage;
 public class TestMain {
 
 	private WebServiceAccessStub stub = new WebServiceAccessStub();
-	private String testmsg = "lkas�dlfjpowierlksdjf�laskdjfpoiwerksdjfa�lsdjfpoweiru";
+	private String testmsg = "lkasödlfjpowierlksdjfülaskdjfpoiwerksdjfaölsdjfpoweiru";
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			IOException, ServerFault_Exception {
