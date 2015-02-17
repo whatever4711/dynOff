@@ -22,8 +22,8 @@ import akkaenvironment.wrapper.PropsPreAvailableWrapper;
 /**
  * Nach JAX-WS annotierte Klasse f�r die Erzeugung des Webserviceendpunktes.
  */
-@WebService
-public class WebServiceAccess {
+@WebService(portName = "DynOffWSPort", serviceName = "DynOffWebservice", targetNamespace = "http://dynoffws/", endpointInterface = "webservice.DynOffWS")
+public class WebServiceAccess implements DynOffWS {
 
 	/**
 	 * Logger
@@ -33,19 +33,13 @@ public class WebServiceAccess {
 	@EJB(name = "ejb/Actorenvironment")
 	private Actorenvironment actorenv;
 
-	/**
-	 * Erzeugt eine Aktorinstanz aus einer serialisierten Props-Instanz.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param props
-	 *            Serialisierte Props-Instanz
-	 * @return Aktoridentifikationsstring
-	 * @throws ServerFault
-	 *             Wird im Falle eines Fehlers geworfen.
+	 * @see webservice.DynOffWS#generateActorFromProps(byte[])
 	 */
-	@WebMethod
-	@WebResult(name = "actorid")
-	public String generateActorFromProps(@WebParam(name = "props") byte[] props)
-			throws ServerFault {
+	@Override
+	public String generateActorFromProps(byte[] props) throws ServerFault {
 		try {
 			Props tmp = (Props) SerializationHelper.deserialize(props);
 			String actor = actorenv.generateActorFromProps(tmp);
@@ -59,19 +53,13 @@ public class WebServiceAccess {
 		}
 	}
 
-	/**
-	 * Bearbeitet synchrone Nachrichten.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param msg
-	 *            In JobMessage gekapselte Nachricht
-	 * @return Serialisiertes Antwortobjekt
-	 * @throws ServerFault
-	 *             Exception f�r die die Fehler�bertragung per JAX-WS
+	 * @see webservice.DynOffWS#sendMessage(webservice.messages.JobMessage)
 	 */
-	@WebMethod
-	@WebResult(name = "resultmessage")
-	public byte[] sendMessage(@WebParam(name = "jobmessage") JobMessage msg)
-			throws ServerFault {
+	@Override
+	public byte[] sendMessage(JobMessage msg) throws ServerFault {
 		String actorid = msg.getActorid();
 		int waittime = msg.getWaittime();
 		byte[] content = msg.getMsg();
@@ -87,20 +75,14 @@ public class WebServiceAccess {
 		}
 	}
 
-	/**
-	 * Bearbeitet asynchrone Nachrichten.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param msg
-	 *            In JobMessageAsync gekapselte Nachricht
-	 * @return Postkastenreferenzstring
-	 * @throws ServerFault
-	 *             Exception f�r die die Fehler�bertragung per JAX-WS
+	 * @see
+	 * webservice.DynOffWS#dispatchAsyncJob(webservice.messages.JobMessageAsync)
 	 */
-	@WebMethod
-	@WebResult(name = "jobid")
-	public String dispatchAsyncJob(
-			@WebParam(name = "jobmessageasync") JobMessageAsync msg)
-			throws ServerFault {
+	@Override
+	public String dispatchAsyncJob(JobMessageAsync msg) throws ServerFault {
 
 		try {
 			return actorenv.dispatchAsyncJob(msg.getActorid(),
@@ -111,19 +93,13 @@ public class WebServiceAccess {
 		}
 	}
 
-	/**
-	 * Dient dem Abruf von asynchronen Antworten
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param jobid
-	 *            Postkastenreferenzstring
-	 * @return Serialisiertes Antwortobjekt
-	 * @throws ServerFault
-	 *             Exception f�r die die Fehler�bertragung per JAX-WS
+	 * @see webservice.DynOffWS#getAsyncJobresult(java.lang.String)
 	 */
-	@WebMethod
-	@WebResult(name = "resultmessage")
-	public byte[] getAsyncJobresult(@WebParam(name = "jobid") String jobid)
-			throws ServerFault {
+	@Override
+	public byte[] getAsyncJobresult(String jobid) throws ServerFault {
 		Object tmp = actorenv.getAsyncJobResult(jobid);
 		try {
 			if (tmp != null) {
@@ -137,13 +113,12 @@ public class WebServiceAccess {
 		}
 	}
 
-	/**
-	 * �bertr�gt die Inhalte von actorPreTable aus Actorenvironment
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @return actorPreTable aus Actorenvironment
+	 * @see webservice.DynOffWS#getPreAvailableProps()
 	 */
-	@WebMethod
-	@WebResult(name = "preavailable")
+	@Override
 	public List<PropsPreAvailableMessage> getPreAvailableProps() {
 		List<PropsPreAvailableMessage> tmp = new ArrayList<>();
 		for (PropsPreAvailableWrapper wrap : actorenv.getActorPreTable()
@@ -154,20 +129,13 @@ public class WebServiceAccess {
 		return tmp;
 	}
 
-	/**
-	 * Erzeugt einen Aktor aus den in actorPreTable vorhaltenen Props-Instanzen
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param propsid
-	 *            Vollqualifizierender Name der Aktorklasse, erh�ltlich �ber
-	 *            getActorPreTable()
-	 * @return Aktoridentifikationsstring
-	 * @throws ServerFault
-	 *             Exception f�r die die Fehler�bertragung per JAX-WS
+	 * @see webservice.DynOffWS#generatePreAvailableActor(java.lang.String)
 	 */
-	@WebMethod
-	@WebResult(name = "actorid")
-	public String generatePreAvailableActor(
-			@WebParam(name = "propsid") String propsid) throws ServerFault {
+	@Override
+	public String generatePreAvailableActor(String propsid) throws ServerFault {
 		try {
 			String tmp = actorenv.generateActorFromPreProps(propsid);
 			logger.info("Preavailable actor created: " + tmp);
