@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "DynOffWebservice", targetNamespace = "http://dynoffws/", wsdlLocation = "http://127.0.0.1:8080/dynOff-GlassfishWeb/DynOffWebservice?wsdl")
+@WebServiceClient(name = "DynOffWebservice", targetNamespace = "http://dynoffws/", wsdlLocation = "http://141.13.92.8:8080/dynOff-GlassfishWeb/DynOffWebservice?wsdl")
 public class DynOffWS
     extends Service
 {
@@ -30,7 +30,7 @@ public class DynOffWS
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://127.0.0.1:8080/dynOff-GlassfishWeb/DynOffWebservice?wsdl");
+            url = new URL("http://141.13.92.8:8080/dynOff-GlassfishWeb/DynOffWebservice?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

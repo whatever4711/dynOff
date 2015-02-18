@@ -86,10 +86,11 @@ public class Actorenvironment {
 	 * angepasst werden, sollten weitere Aktoren hinzugef�gt werden m�ssen.
 	 */
 	private void generateActorPreTable() {
-		actorPreTable.put(TestActor.class.getName(),
+		actorPreTable.put(
+				TestActor.class.getName(),
 				new PropsPreAvailableWrapper(TestActor.class.getName(),
-						"Testactor f�r Echotest mit String", Props.create(
-								TestActor.class)));
+						"Testactor fuer Echotest mit String", Props
+								.create(TestActor.class)));
 	}
 
 	/**
