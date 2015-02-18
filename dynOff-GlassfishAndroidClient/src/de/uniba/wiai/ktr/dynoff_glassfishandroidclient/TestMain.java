@@ -1,4 +1,4 @@
-package ktrsem.testclient;
+package de.uniba.wiai.ktr.dynoff_glassfishandroidclient;
 
 import helper.SerializationHelper;
 
@@ -6,18 +6,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ktrsem.ws.clientstub.DynOffWebserviceStub;
-import ktrsem.ws.clientstub.generated.JobMessage;
-import ktrsem.ws.clientstub.generated.JobMessageAsync;
-import ktrsem.ws.clientstub.generated.PropsPreAvailableMessage;
-import ktrsem.ws.clientstub.generated.ServerFault_Exception;
 import akka.actor.Props;
 import akkaenvironment.actors.TestActor;
 import akkaenvironment.actors.TestMessage;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.JobMessage;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.JobMessageAsync;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.PropsPreAvailableMessage;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.ServerFault_Exception;
 
 public class TestMain {
 
-	private DynOffWebserviceStub stub = new DynOffWebserviceStub();
+	//private WebServiceAccessStub stub = new WebServiceAccessStub();
 	private String testmsg = "lkasödlfjpowierlksdjfülaskdjfpoiwerksdjfaölsdjfpoweiru";
 
 	public static void main(String[] args) throws ClassNotFoundException,
@@ -66,14 +65,14 @@ public class TestMain {
 		jobmsg.setWaittime(10000);
 		jobmsg.setMessage(SerializationHelper.serialize(msg));
 
-		byte[] tmpresp = stub.sendMessage(jobmsg);
+//		byte[] tmpresp = stub.sendMessage(jobmsg);
 
-		TestMessage resp = (TestMessage) SerializationHelper
-				.deserialize(tmpresp);
-		String syncresult = resp.getContent();
-		System.out.println("Received String: " + syncresult);
+//		TestMessage resp = (TestMessage) SerializationHelper
+//				.deserialize(tmpresp);
+//		String syncresult = resp.getContent();
+//		System.out.println("Received String: " + syncresult);
 
-		return syncresult;
+		return "test";// syncresult;
 
 	}
 
@@ -81,10 +80,10 @@ public class TestMain {
 		System.out.println("Test of Method: getPreAvailableProps");
 		System.out.println("====================================");
 		System.out.println("The following actors are available:");
-		List<PropsPreAvailableMessage> tmp = stub.getPreAvailableProps();
-		for (PropsPreAvailableMessage msg : tmp) {
-			System.out.println(msg.getActorname());
-		}
+//		List<PropsPreAvailableMessage> tmp = stub.getPreAvailableProps();
+//		for (PropsPreAvailableMessage msg : tmp) {
+//			System.out.println(msg.getActorname());
+//		}
 
 	}
 
@@ -92,17 +91,17 @@ public class TestMain {
 		System.out.println();
 		System.out.println("Test of Method: generatePreAvailableActor");
 		System.out.println("=========================================");
-		List<PropsPreAvailableMessage> tmp = stub.getPreAvailableProps();
-		List<String> actorids = new ArrayList<>();
-		for (PropsPreAvailableMessage msg : tmp) {
-			System.out.println(msg.getActorname());
-
-			actorids.add(stub.generatePreAvailableActor(msg.getActorname()));
-
-		}
-		System.out.println("Preavailable actor creation successful: "
-				+ actorids.get(0));
-		return actorids.get(0);
+//		List<PropsPreAvailableMessage> tmp = stub.getPreAvailableProps();
+//		List<String> actorids = new ArrayList<String>();
+//		for (PropsPreAvailableMessage msg : tmp) {
+//			System.out.println(msg.getActorname());
+//
+//			actorids.add(stub.generatePreAvailableActor(msg.getActorname()));
+//
+//		}
+//		System.out.println("Preavailable actor creation successful: "
+//				+ actorids.get(0));
+		return "test";//actorids.get(0);
 	}
 
 	public String testgenerateActorFromProps() throws IOException,
@@ -112,13 +111,14 @@ public class TestMain {
 		System.out.println("======================================");
 		byte[] tmp = null;
 
+		System.out.println(TestActor.class.getCanonicalName());
 		tmp = SerializationHelper.serialize(Props.create(TestActor.class));
 
 		String actorid = "Actor generation from Props failed!";
 
-		actorid = stub.generateActorFromProps(tmp);
-		System.out.println("Actor creation successful: " + actorid);
-		return actorid;
+//		actorid = stub.generateActorFromProps(tmp);
+//		System.out.println("Actor creation successful: " + actorid);
+		return "test";//actorid;
 
 	}
 
@@ -137,7 +137,7 @@ public class TestMain {
 		asyncmsg.setActorid(actorid);
 		asyncmsg.setMessage(content);
 
-		String jobid = stub.dispatchAsyncJob(asyncmsg);
+		String jobid = "test";// stub.dispatchAsyncJob(asyncmsg);
 		System.out.println("Received jobid: " + jobid);
 		System.out.println();
 		System.out.println("Thread sleeps for 3 seconds");
@@ -160,12 +160,12 @@ public class TestMain {
 
 		TestMessage resp = null;
 
-		resp = (TestMessage) SerializationHelper.deserialize(stub
-				.getAsyncJobresult(jobId));
+//		resp = (TestMessage) SerializationHelper.deserialize(stub
+//				.getAsyncJobresult(jobId));
 
 		System.out.println("Received String: " + resp.getContent());
 
-		return resp.getContent();
+		return "test";// resp.getContent();
 	}
 
 }

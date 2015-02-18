@@ -1,4 +1,4 @@
-package ktrsem.ws.clientstub;
+package de.uniba.wiai.ktr.dynoff_glassfishandroidclient;
 
 import java.net.URL;
 import java.util.List;
@@ -6,22 +6,25 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
+import javax.xml.namespace.QName;
 import javax.xml.ws.Action;
 import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
-import ktrsem.ws.clientstub.generated.JobMessage;
-import ktrsem.ws.clientstub.generated.JobMessageAsync;
-import ktrsem.ws.clientstub.generated.PropsPreAvailableMessage;
-import ktrsem.ws.clientstub.generated.ServerFault_Exception;
-import ktrsem.ws.clientstub.generated.WebServiceAccess;
-import ktrsem.ws.clientstub.generated.WebServiceAccessService;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.JobMessage;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.JobMessageAsync;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.PropsPreAvailableMessage;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.ServerFault_Exception;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.WebServiceAccess;
+import de.uniba.wiai.ktr.dynoff_wsdlstub.WebServiceAccessService;
+
 
 public class WebServiceAccessStub implements WebServiceAccess {
 
 	private WebServiceAccessService service;
 	private WebServiceAccess proxy;
+	private final static QName WEBSERVICEACCESSSERVICE_QNAME = new QName("http://webservice/", "WebServiceAccessService");
 
 	public WebServiceAccessStub() {
 		super();
@@ -30,7 +33,7 @@ public class WebServiceAccessStub implements WebServiceAccess {
 	}
 
 	public WebServiceAccessStub(URL wsdlLocation) {
-		service = new WebServiceAccessService(wsdlLocation);
+		service = new WebServiceAccessService(wsdlLocation, WEBSERVICEACCESSSERVICE_QNAME);
 		proxy = service.getWebServiceAccessPort();
 	}
 

@@ -17,20 +17,20 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WebServiceAccessService", targetNamespace = "http://webservice/", wsdlLocation = "http://IncrediblePC:8080/dynOff-GlassfishWeb/WebServiceAccessService?wsdl")
-public class WebServiceAccessService
+@WebServiceClient(name = "DynOffWebservice", targetNamespace = "http://dynoffws/", wsdlLocation = "http://127.0.0.1:8080/dynOff-GlassfishWeb/DynOffWebservice?wsdl")
+public class DynOffWS
     extends Service
 {
 
     private final static URL WEBSERVICEACCESSSERVICE_WSDL_LOCATION;
     private final static WebServiceException WEBSERVICEACCESSSERVICE_EXCEPTION;
-    private final static QName WEBSERVICEACCESSSERVICE_QNAME = new QName("http://webservice/", "WebServiceAccessService");
+    private final static QName WEBSERVICEACCESSSERVICE_QNAME = new QName("http://dynoffws/", "DynOffWebservice");
 
     static {
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://IncrediblePC:8080/dynOff-GlassfishWeb/WebServiceAccessService?wsdl");
+            url = new URL("http://127.0.0.1:8080/dynOff-GlassfishWeb/DynOffWebservice?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -38,27 +38,27 @@ public class WebServiceAccessService
         WEBSERVICEACCESSSERVICE_EXCEPTION = e;
     }
 
-    public WebServiceAccessService() {
+    public DynOffWS() {
         super(__getWsdlLocation(), WEBSERVICEACCESSSERVICE_QNAME);
     }
 
-    public WebServiceAccessService(WebServiceFeature... features) {
+    public DynOffWS(WebServiceFeature... features) {
         super(__getWsdlLocation(), WEBSERVICEACCESSSERVICE_QNAME, features);
     }
 
-    public WebServiceAccessService(URL wsdlLocation) {
+    public DynOffWS(URL wsdlLocation) {
         super(wsdlLocation, WEBSERVICEACCESSSERVICE_QNAME);
     }
 
-    public WebServiceAccessService(URL wsdlLocation, WebServiceFeature... features) {
+    public DynOffWS(URL wsdlLocation, WebServiceFeature... features) {
         super(wsdlLocation, WEBSERVICEACCESSSERVICE_QNAME, features);
     }
 
-    public WebServiceAccessService(URL wsdlLocation, QName serviceName) {
+    public DynOffWS(URL wsdlLocation, QName serviceName) {
         super(wsdlLocation, serviceName);
     }
 
-    public WebServiceAccessService(URL wsdlLocation, QName serviceName, WebServiceFeature... features) {
+    public DynOffWS(URL wsdlLocation, QName serviceName, WebServiceFeature... features) {
         super(wsdlLocation, serviceName, features);
     }
 
@@ -67,9 +67,9 @@ public class WebServiceAccessService
      * @return
      *     returns WebServiceAccess
      */
-    @WebEndpoint(name = "WebServiceAccessPort")
-    public WebServiceAccess getWebServiceAccessPort() {
-        return super.getPort(new QName("http://webservice/", "WebServiceAccessPort"), WebServiceAccess.class);
+    @WebEndpoint(name = "DynOffWSPort")
+    public DynOffWebservice getWebServiceAccessPort() {
+        return super.getPort(new QName("http://dynoffws/", "DynOffWSPort"), DynOffWebservice.class);
     }
 
     /**
@@ -79,9 +79,9 @@ public class WebServiceAccessService
      * @return
      *     returns WebServiceAccess
      */
-    @WebEndpoint(name = "WebServiceAccessPort")
-    public WebServiceAccess getWebServiceAccessPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://webservice/", "WebServiceAccessPort"), WebServiceAccess.class, features);
+    @WebEndpoint(name = "DynOffWSPort")
+    public DynOffWebservice getWebServiceAccessPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://dynoffws/", "DynOffWSPort"), DynOffWebservice.class, features);
     }
 
     private static URL __getWsdlLocation() {
