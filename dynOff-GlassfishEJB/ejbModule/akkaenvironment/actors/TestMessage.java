@@ -1,29 +1,37 @@
 package akkaenvironment.actors;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
-/**
- * Nachricht um einen String zu Testzwecken zu kapseln und in TestActor zu
- * verarbeiten.
- */
 
 @SuppressWarnings("serial")
 public class TestMessage implements Serializable {
+    // private static final long serialVersionUID = -2800066513310728483L;
 
-    //private static final long serialVersionUID = -2800066513310728483L;
-	
-	private String content;
+    private String content;
 
-	public TestMessage(String content) {
-		this.content = content;
-	}
+    private byte[] image;
 
-	public String getContent() {
-		return content;
-	}
+    public TestMessage(String content, byte[] image) {
+        this.content = content;
+        this.image = image;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
 }
