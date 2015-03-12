@@ -11,24 +11,29 @@ import java.net.Socket;
 
 
 public class TestActor extends UntypedActor {
-    private TestMessage msg;
+    
 
 
     @Override
     public void onReceive(Object arg0) throws Exception {
-        msg = (TestMessage) arg0;
+        TestMessage msg = (TestMessage) arg0;
+        System.out.println("Received " + msg.getContent());
+        
+        final TestMessage response = getImage(msg, "141.13.92.2", 4711);
+        System.out.println("Returning " + response.getContent());
 
-        this.getSender().tell(getImage("localhost", 4711), getSelf());
+        this.getSender().tell(response, getSelf());
+        
     }
 
-    protected TestMessage getImage(String host, int port) {
+    protected TestMessage getImage(TestMessage msg, String host, int port) {
         Socket socket = null;
         TestMessage rcvd = null;
         try  {
             socket = new Socket(InetAddress.getByName(host), port);
-            ObjectOutputStream oout = new ObjectOutputStream(socket.getOutputStream());
-            oout.writeObject(msg);
-            oout.flush();
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(msg);
+            oos.flush();
 
             ObjectInput ois = new ObjectInputStream(socket.getInputStream());
             Object in = ois.readObject();

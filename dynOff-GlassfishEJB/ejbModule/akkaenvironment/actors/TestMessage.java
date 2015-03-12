@@ -1,7 +1,5 @@
 package akkaenvironment.actors;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 
 
@@ -9,9 +7,9 @@ import java.io.Serializable;
 public class TestMessage implements Serializable {
     // private static final long serialVersionUID = -2800066513310728483L;
 
-    private String content;
+    private final String content;
 
-    private byte[] image;
+    private final byte[] image;
 
     public TestMessage(String content, byte[] image) {
         this.content = content;
@@ -20,18 +18,10 @@ public class TestMessage implements Serializable {
 
     public String getContent() {
         return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
+    }  
 
     public byte[] getImage() {
         return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
+    }   
 
 }
