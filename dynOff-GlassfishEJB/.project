@@ -3,7 +3,7 @@
 	<name>dynOff-GlassfishEJB</name>
 	<comment></comment>
 	<projects>
-		<project>dynoff-Actors</project>
+		<project>dynOff-Actors</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
