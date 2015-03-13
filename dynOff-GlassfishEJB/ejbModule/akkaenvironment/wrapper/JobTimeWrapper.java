@@ -1,5 +1,6 @@
 package akkaenvironment.wrapper;
 
+
 /**
  * Wrapperklasse um die gekapselten Daten mit einer Verfallszeit zu versehen.
  */

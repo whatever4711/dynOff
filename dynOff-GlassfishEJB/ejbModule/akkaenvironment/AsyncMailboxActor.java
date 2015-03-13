@@ -11,7 +11,7 @@ import akkaenvironment.wrapper.ActorRefTimeWrapper;
 import akkaenvironment.wrapper.JobTimeWrapper;
 
 /**
- * Aktor für die Verwaltung von asynchronen Nachrichten.
+ * Aktor fï¿½r die Verwaltung von asynchronen Nachrichten.
  */
 public class AsyncMailboxActor extends UntypedActor {
 
@@ -21,30 +21,30 @@ public class AsyncMailboxActor extends UntypedActor {
 	Logger logger = Logger.getLogger(AsyncMailboxActor.class.getName());
 
 	/**
-	 * Enthält alle aktiven Aktorreferenzen, Shared Memory mit Actorenvironment.
+	 * Enthï¿½lt alle aktiven Aktorreferenzen, Shared Memory mit Actorenvironment.
 	 */
 	private ConcurrentHashMap<String, ActorRefTimeWrapper> actorRefTable;
 
 	/**
-	 * Enthält alle fertigen, asynchronen Antworten, Shared Memory mit
+	 * Enthï¿½lt alle fertigen, asynchronen Antworten, Shared Memory mit
 	 * Actorenvironment.
 	 */
 	private ConcurrentHashMap<String, JobTimeWrapper> jobsTable;
 
 	/**
-	 * Hilfstabelle für die Verwaltung von asynchronen Aufträgen, bis zum
+	 * Hilfstabelle fï¿½r die Verwaltung von asynchronen Auftrï¿½gen, bis zum
 	 * Eintreffen deren Antwort.
 	 */
 	private Hashtable<String, ConcurrentLinkedQueue<JobTimeWrapper>> openJobs = new Hashtable<>();
 
 	/**
-	 * Vorhaltezeit in Millisekunden für Aktorreferenzen und asynchrone
-	 * Nachrichten. Wird primär in Actorenvironment gehalten.
+	 * Vorhaltezeit in Millisekunden fï¿½r Aktorreferenzen und asynchrone
+	 * Nachrichten. Wird primï¿½r in Actorenvironment gehalten.
 	 */
 	private long storageTime;
 
 	/**
-	 * Methode aus UntypedActor. Überschrieben für die Nachrichtenverarbeitung.
+	 * Methode aus UntypedActor. ï¿½berschrieben fï¿½r die Nachrichtenverarbeitung.
 	 * 
 	 * @param arg0
 	 *            Nachrichtenobjekt
@@ -74,9 +74,9 @@ public class AsyncMailboxActor extends UntypedActor {
 	}
 
 	/**
-	 * Dient der Verarbeitung von neuen, asynchronen Aufträgen. Legt eine
+	 * Dient der Verarbeitung von neuen, asynchronen Auftrï¿½gen. Legt eine
 	 * Postkastenqueue in openJobs an und schickt den Jobidentifikationsstring
-	 * zurück.
+	 * zurï¿½ck.
 	 * 
 	 * @param msg
 	 *            Nachrichtenobjekt
@@ -130,11 +130,12 @@ public class AsyncMailboxActor extends UntypedActor {
 	private void resultMsgReceived(Object msg) {
 		JobTimeWrapper result = openJobs.get(getSender().toString()).poll();
 		result.setTimeout(System.currentTimeMillis() + storageTime);
+		result.setResultMsg(msg);
 		jobsTable.put(result.getJobId(), result);
 	}
 
 	/**
-	 * Entfernt abgelaufene Aufträge aus openJobs
+	 * Entfernt abgelaufene Auftrï¿½ge aus openJobs
 	 */
 	private void cleanUp() {
 		Collection<ConcurrentLinkedQueue<JobTimeWrapper>> col = openJobs
