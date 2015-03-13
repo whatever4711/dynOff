@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import akka.actor.Props;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.actors.TestActor;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.actors.TestMessage;
 import de.uniba.wiai.ktr.mg.dynoff.client.generated.JobMessage;
 import de.uniba.wiai.ktr.mg.dynoff.client.generated.JobMessageAsync;
 import de.uniba.wiai.ktr.mg.dynoff.client.generated.PropsPreAvailableMessage;
 import de.uniba.wiai.ktr.mg.dynoff.client.generated.ServerFault_Exception;
-import de.uniba.wiai.ktr.mg.dynoff.client.helper.SerializationHelper;
-import akka.actor.Props;
+import de.uniba.wiai.ktr.mg.dynoff.shared.SerializationHelper;
 
 public class TestMain {
 

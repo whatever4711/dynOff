@@ -7,13 +7,13 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.jws.WebService;
 
+import akka.actor.Props;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.Actorenvironment;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.PropsPreAvailableWrapper;
-import de.uniba.wiai.ktr.mg.dynoff.webservice.helper.SerializationHelper;
+import de.uniba.wiai.ktr.mg.dynoff.shared.SerializationHelper;
 import de.uniba.wiai.ktr.mg.dynoff.webservice.messages.JobMessage;
 import de.uniba.wiai.ktr.mg.dynoff.webservice.messages.JobMessageAsync;
 import de.uniba.wiai.ktr.mg.dynoff.webservice.messages.PropsPreAvailableMessage;
-import akka.actor.Props;
 
 /**
  * Nach JAX-WS annotierte Klasse f�r die Erzeugung des Webserviceendpunktes.

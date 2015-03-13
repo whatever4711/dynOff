@@ -1,4 +1,5 @@
-package de.uniba.wiai.ktr.mg.dynoff.webservice.helper;
+package de.uniba.wiai.ktr.mg.dynoff.shared;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -6,10 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/**
- * Hilfsklasse mit Methoden f�r Serialisierung und Deserialisierung von
- * Objektinstanzen.
- */
 public class SerializationHelper {
 
 	public static byte[] serialize(Object obj) throws IOException {
