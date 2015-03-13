@@ -5,6 +5,7 @@
 	<projects>
 		<project>dynOff-GlassfishWeb</project>
 		<project>dynOff-GlassfishEJB</project>
+		<project>dynoff-Actors</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
