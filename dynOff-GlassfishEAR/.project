@@ -3,9 +3,9 @@
 	<name>dynOff-GlassfishEAR</name>
 	<comment></comment>
 	<projects>
-		<project>dynOff-GlassfishWeb</project>
+		<project>dynOff-ActorsUtility</project>
 		<project>dynOff-GlassfishEJB</project>
-		<project>dynOff-Actors</project>
+		<project>dynOff-GlassfishWeb</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
