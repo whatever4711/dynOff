@@ -58,7 +58,7 @@ public class TestMain {
 		System.out.println("Sending String: " + testmsg + " to actor: "
 				+ actorid);
 
-		TestMessage msg = new TestMessage(testmsg, null);
+		TestMessage msg = new TestMessage(testmsg, "", 0, null);
 		JobMessage jobmsg = new JobMessage();
 		jobmsg.setActorid(actorid);
 		jobmsg.setWaittime(10000);
@@ -128,7 +128,7 @@ public class TestMain {
 		System.out.println("Sending String: " + testmsg + " to actor: "
 				+ actorid);
 
-		TestMessage msgtosend = new TestMessage(testmsg, null);
+		TestMessage msgtosend = new TestMessage(testmsg, "", 0, null);
 		byte[] content = SerializationHelper.serialize(msgtosend);
 
 		JobMessageAsync asyncmsg = new JobMessageAsync();
