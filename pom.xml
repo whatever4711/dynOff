@@ -1,147 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
- 
-    <!-- Basic Properties -->
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>de.uniba.wiai.ktr.mg</groupId>
-    <artifactId>DynOff-ear</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>DynOff-ear</name>
- 
-    <!-- The absolute path to the Glassfish Server, please change this... -->
-    <properties>
-        <glassfish.directory>/opt/glassfish4/</glassfish.directory>
-    </properties>
- 
-    <!-- Reference the parent -->
-    <parent>
-        <artifactId>project</artifactId>
-        <groupId>com.developerscrappad</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
- 
-    <!-- The packaging value of any EAR module should be "ear" -->
-    <packaging>ear</packaging>
- 
-    <!--
-        The dependencies for EAR module should include all thoese sub-modules
-        that are needed to be packaged into the ear file like the below...
-    -->
-    <dependencies>
-        <dependency>
-            <groupId>com.developerscrappad</groupId>
-            <artifactId>DummyDemo-ejb</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>com.developerscrappad</groupId>
-            <artifactId>DummyDemo-web</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>war</type>
-        </dependency>
-        <dependency>
-            <groupId>com.developerscrappad</groupId>
-            <artifactId>DummyDemo-appclient</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>app-client</type>
-        </dependency>
-        <dependency>
-            <groupId>com.developerscrappad</groupId>
-            <artifactId>DummyDemo-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
- 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
-                <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
-                </configuration>
-            </plugin>
-            <!--
-                The ear plugin must include the definition for "modules",
-                for any modules that are needed to be included in the EAR file,
-                you need to specify them one by one, e.g. "ejbModule", "webModule",
-                "jarModule" and "appClientModule".
-            -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-ear-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <version>5</version>
-                    <defaultLibBundleDir>lib</defaultLibBundleDir>
-                    <modules>
-                        <ejbModule>
-                            <groupId>com.developerscrappad</groupId>
-                            <artifactId>DummyDemo-ejb</artifactId>
-                        </ejbModule>
-                        <webModule>
-                            <groupId>com.developerscrappad</groupId>
-                            <artifactId>DummyDemo-web</artifactId>
-                            <context-root>/DummyDemo-web</context-root>
-                        </webModule>
-                        <jarModule>
-                            <groupId>com.developerscrappad</groupId>
-                            <artifactId>DummyDemo-api</artifactId>
-                        </jarModule>
-                        <appClientModule>
-                            <groupId>com.developerscrappad</groupId>
-                            <artifactId>DummyDemo-appclient</artifactId>
-                        </appClientModule>
-                    </modules>
-                </configuration>
-            </plugin>
- 
-            <!-- Glassfish App Server -->
-            <plugin>
-                <groupId>org.glassfish.maven.plugin</groupId>
-                <artifactId>maven-glassfish-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <id>gf-undeploy</id>
-                        <goals>
-                            <goal>undeploy</goal>
-                        </goals>
-                        <phase>clean</phase>
-                    </execution>
-                    <execution>
-                        <id>gf-deploy</id>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <user>admin</user>
-                    <glassfishDirectory>${glassfish.directory}</glassfishDirectory>
-                    <domainDirectory>${glassfish.directory}/glassfish/domains/</domainDirectory>
-                    <passwordFile>${basedir}/glassfishpasswordfile</passwordFile>
-                    <domain>
-                        <name>DummyDemoDomain</name>
-                        <adminPort>4848</adminPort>
-                        <httpPort>8080</httpPort>
-                        <httpsPort>8443</httpsPort>
-                    </domain>
-                    <components>
-                        <component>
-                            <name>DummyDemo</name>
-                            <artifact>target/DummyDemo-ear-1.0-SNAPSHOT.ear</artifact>
-                        </component>
-                    </components>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
- 
-</project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+  <!-- Basic Properties -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.uniba.wiai.ktr.mg</groupId>
+  <artifactId>DynOff-ear</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>DynOff-ear</name>
+
+  <!-- The absolute path to the Glassfish Server, please change this... -->
+  <properties>
+      <glassfish.directory>/opt/glassfish5/</glassfish.directory>
+  </properties>
+    <modules>
+        <module>dynOff-GlassfishEJB</module>
+        <module>dynOff-GlassfishWeb</module>
+        <module>dynOff-GlassfishEAR</module>
+    </modules>
+
+
+  <packaging>pom</packaging>
+
+
+    <dependencyManagement>
+  <dependencies>
+      <dependency>
+          <groupId>de.uniba.wiai.ktr.mg</groupId>
+          <artifactId>dynOff-GlassfishEJB</artifactId>
+          <version>1.0-SNAPSHOT</version>
+          <type>ejb</type>
+      </dependency>
+      <dependency>
+          <groupId>de.uniba.wiai.ktr.mg</groupId>
+          <artifactId>dynOff-GlassfishWeb</artifactId>
+          <version>1.0-SNAPSHOT</version>
+          <type>war</type>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>javax</groupId>
+          <artifactId>javaee-api</artifactId>
+          <version>7.0</version>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor_2.12</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-testkit_2.12</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+  </dependencies>
+    </dependencyManagement>
+
+  <build>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.5.1</version>
+              <configuration>
+                  <source>1.8</source>
+                  <target>1.8</target>
+              </configuration>
+          </plugin>
+          <plugin>
+              <artifactId>maven-ejb-plugin</artifactId>
+              <version>2.5.1</version>
+              <configuration>
+                  <ejbVersion>3.1</ejbVersion>
+              </configuration>
+          </plugin>
+          <plugin>
+              <artifactId>maven-war-plugin</artifactId>
+              <version>2.6</version>
+              <configuration>
+                  <failOnMissingWebXml>false</failOnMissingWebXml>
+              </configuration>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-ear-plugin</artifactId>
+              <version>2.10.1</version>
+              <configuration>
+                  <version>8</version>
+                  <modules>
+                      <webModule>
+                          <groupId>de.uniba.ktr.mg</groupId>
+                          <artifactId>dynOff-GlassfishWeb</artifactId>
+                          <contextRoot>/</contextRoot>
+                      </webModule>
+                  </modules>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
+
+    <profiles>
+        <profile>
+            <id>unpack</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-ear-plugin</artifactId>
+                            <configuration>
+                                <unpackTypes>war, ejb</unpackTypes>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
