@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <!-- Basic Properties -->
   <modelVersion>4.0.0</modelVersion>
@@ -11,117 +10,114 @@
 
   <!-- The absolute path to the Glassfish Server, please change this... -->
   <properties>
-      <glassfish.directory>/opt/glassfish5/</glassfish.directory>
+    <glassfish.directory>/opt/glassfish5/</glassfish.directory>
   </properties>
-    <modules>
-        <module>dynOff-GlassfishEJB</module>
-        <module>dynOff-GlassfishWeb</module>
-        <module>dynOff-GlassfishEAR</module>
-    </modules>
-
+  <modules>
+    <module>dynOff-GlassfishEJB</module>
+    <module>dynOff-GlassfishWeb</module>
+    <module>dynOff-GlassfishEAR</module>
+  </modules>
 
   <packaging>pom</packaging>
 
-
-    <dependencyManagement>
-  <dependencies>
+  <dependencyManagement>
+    <dependencies>
       <dependency>
-          <groupId>de.uniba.wiai.ktr.mg</groupId>
-          <artifactId>dynOff-GlassfishEJB</artifactId>
-          <version>1.0-SNAPSHOT</version>
-          <type>ejb</type>
+        <groupId>de.uniba.wiai.ktr.mg</groupId>
+        <artifactId>dynOff-GlassfishEJB</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <type>ejb</type>
       </dependency>
       <dependency>
-          <groupId>de.uniba.wiai.ktr.mg</groupId>
-          <artifactId>dynOff-GlassfishWeb</artifactId>
-          <version>1.0-SNAPSHOT</version>
-          <type>war</type>
-          <scope>compile</scope>
+        <groupId>de.uniba.wiai.ktr.mg</groupId>
+        <artifactId>dynOff-GlassfishWeb</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <type>war</type>
+        <scope>compile</scope>
       </dependency>
       <dependency>
-          <groupId>javax</groupId>
-          <artifactId>javaee-api</artifactId>
-          <version>7.0</version>
-          <scope>provided</scope>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>7.0</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_2.12</artifactId>
-            <version>2.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-testkit_2.12</artifactId>
-            <version>2.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-  </dependencies>
-    </dependencyManagement>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-actor_2.12</artifactId>
+        <version>2.5.3</version>
+      </dependency>
+      <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-testkit_2.12</artifactId>
+        <version>2.5.3</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
-      <plugins>
-          <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <version>3.5.1</version>
-              <configuration>
-                  <source>1.8</source>
-                  <target>1.8</target>
-              </configuration>
-          </plugin>
-          <plugin>
-              <artifactId>maven-ejb-plugin</artifactId>
-              <version>2.5.1</version>
-              <configuration>
-                  <ejbVersion>3.1</ejbVersion>
-              </configuration>
-          </plugin>
-          <plugin>
-              <artifactId>maven-war-plugin</artifactId>
-              <version>2.6</version>
-              <configuration>
-                  <failOnMissingWebXml>false</failOnMissingWebXml>
-              </configuration>
-          </plugin>
-          <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-ear-plugin</artifactId>
-              <version>2.10.1</version>
-              <configuration>
-                  <version>8</version>
-                  <modules>
-                      <webModule>
-                          <groupId>de.uniba.ktr.mg</groupId>
-                          <artifactId>dynOff-GlassfishWeb</artifactId>
-                          <contextRoot>/</contextRoot>
-                      </webModule>
-                  </modules>
-              </configuration>
-          </plugin>
-      </plugins>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-ejb-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+          <ejbVersion>3.1</ejbVersion>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <version>2.10.1</version>
+        <configuration>
+          <modules>
+            <webModule>
+              <groupId>de.uniba.ktr.mg</groupId>
+              <artifactId>dynOff-GlassfishWeb</artifactId>
+              <contextRoot>/</contextRoot>
+            </webModule>
+          </modules>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
-    <profiles>
-        <profile>
-            <id>unpack</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-ear-plugin</artifactId>
-                            <configuration>
-                                <unpackTypes>war, ejb</unpackTypes>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-    </profiles>
+  <profiles>
+    <profile>
+      <id>unpack</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-ear-plugin</artifactId>
+              <configuration>
+                <unpackTypes>war, ejb</unpackTypes>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
