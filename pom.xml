@@ -76,6 +76,20 @@
               <target>1.8</target>
             </configuration>
           </plugin>
+  <!--        <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/lib/</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin> -->
           <plugin>
             <artifactId>maven-ejb-plugin</artifactId>
             <version>2.5.1</version>
@@ -94,21 +108,29 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-ear-plugin</artifactId>
             <version>2.10.1</version>
-            <configuration>
-              <modules>
-                <webModule>
-                  <groupId>de.uniba.wiai.ktr.mg</groupId>
-                  <artifactId>dynOff-Web</artifactId>
-                  <contextRoot>/</contextRoot>
-                </webModule>
-                <ejbModule>
-                  <groupId>de.uniba.wiai.ktr.mg</groupId>
-                  <artifactId>dynOff-EJB</artifactId>
-                  <bundleFileName>dynOff-EJB.jar</bundleFileName>
-                </ejbModule>
-              </modules>
 
-            </configuration>
+              <configuration>
+                <modules>
+                  <webModule>
+                    <groupId>de.uniba.wiai.ktr.mg</groupId>
+                    <artifactId>dynOff-Web</artifactId>
+                    <contextRoot>/</contextRoot>
+                  </webModule>
+                  <ejbModule>
+                    <groupId>de.uniba.wiai.ktr.mg</groupId>
+                    <artifactId>dynOff-EJB</artifactId>
+                    <bundleFileName>dynOff-EJB.jar</bundleFileName>
+                  </ejbModule>
+                  <jarModule>
+                    <groupId>com.typesafe.akka</groupId>
+                    <artifactId>akka-actor_2.12</artifactId>
+                    <bundleFileName>akka-actor.jar</bundleFileName>
+                  </jarModule>
+                </modules>
+                <displayName>DynOff</displayName>
+                <generateApplicationXml>true</generateApplicationXml>
+              </configuration>
+
           </plugin>
         </plugins>
       </build>

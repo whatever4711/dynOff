@@ -17,6 +17,10 @@
     <name>Enterprise Archive</name>
 
     <dependencies>
+      <dependency>
+          <groupId>com.typesafe.akka</groupId>
+          <artifactId>akka-actor_2.12</artifactId>
+        </dependency>
         <dependency>
             <groupId>de.uniba.wiai.ktr.mg</groupId>
             <artifactId>dynOff-Web</artifactId>
@@ -34,21 +38,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
-                <configuration>
-                  <modules>
-                    <webModule>
-                      <groupId>de.uniba.wiai.ktr.mg</groupId>
-                      <artifactId>dynOff-Web</artifactId>
-                      <contextRoot>/</contextRoot>
-                    </webModule>
-                    <ejbModule>
-                      <groupId>de.uniba.wiai.ktr.mg</groupId>
-                      <artifactId>dynOff-EJB</artifactId>
-                      <bundleFileName>dynOff-EJB.jar</bundleFileName>
-                    </ejbModule>
-                  </modules>
-
-                </configuration>
             </plugin>
         </plugins>
     </build>
