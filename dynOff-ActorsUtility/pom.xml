@@ -6,33 +6,26 @@
 
     <parent>
         <groupId>de.uniba.wiai.ktr.mg</groupId>
-        <artifactId>DynOff-ear</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>dynOff</artifactId>
+        <version>1.0</version>
     </parent>
 
     <groupId>de.uniba.wiai.ktr.mg</groupId>
-    <artifactId>dynOff-GlassfishWeb</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <artifactId>dynOff-ActorsUtility</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <name>Shared Libraries</name>
 
     <dependencies>
         <dependency>
-            <groupId>de.uniba.wiai.ktr.mg</groupId>
-            <artifactId>dynOff-GlassfishEJB</artifactId>
-            <type>ejb</type>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor_2.12</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-testkit_2.12</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

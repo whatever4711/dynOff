@@ -6,27 +6,31 @@
 
     <parent>
         <groupId>de.uniba.wiai.ktr.mg</groupId>
-        <artifactId>DynOff-ear</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>dynOff</artifactId>
+        <version>1.0</version>
     </parent>
 
     <groupId>de.uniba.wiai.ktr.mg</groupId>
-    <artifactId>dynOff-GlassfishEJB</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>ejb</packaging>
+    <artifactId>dynOff-EAR</artifactId>
+    <version>1.0</version>
+    <packaging>ear</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>de.uniba.wiai.ktr.mg</groupId>
+            <artifactId>dynOff-Web</artifactId>
+             <type>war</type>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-ejb-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
+
+    
 </project>

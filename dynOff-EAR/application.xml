@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://java.sun.com/xml/ns/javaee" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
-  <display-name>dynOff-GlassfishEAR</display-name>
+  <display-name>dynOff-EAR</display-name>
   <module>
     <web>
-      <web-uri>dynOff-GlassfishWeb.war</web-uri>
-      <context-root>dynOff-GlassfishWeb</context-root>
+      <web-uri>dynOff-Web.war</web-uri>
+      <context-root>dynOff-Web</context-root>
     </web>
   </module>
   <module>
-    <ejb>dynOff-GlassfishEJB.jar</ejb>
+    <ejb>dynOff-EJB.jar</ejb>
   </module>
 </application>
