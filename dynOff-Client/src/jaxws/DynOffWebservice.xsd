@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://dynoffws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://dynoffws/">
+
+<xs:element name="dispatchAsyncJob" type="tns:dispatchAsyncJob"/>
+
+<xs:element name="dispatchAsyncJobResponse" type="tns:dispatchAsyncJobResponse"/>
+
+<xs:element name="generateActorFromProps" type="tns:generateActorFromProps"/>
+
+<xs:element name="generateActorFromPropsResponse" type="tns:generateActorFromPropsResponse"/>
+
+<xs:element name="generatePreAvailableActor" type="tns:generatePreAvailableActor"/>
+
+<xs:element name="generatePreAvailableActorResponse" type="tns:generatePreAvailableActorResponse"/>
+
+<xs:element name="getAsyncJobresult" type="tns:getAsyncJobresult"/>
+
+<xs:element name="getAsyncJobresultResponse" type="tns:getAsyncJobresultResponse"/>
+
+<xs:element name="getPreAvailableProps" type="tns:getPreAvailableProps"/>
+
+<xs:element name="getPreAvailablePropsResponse" type="tns:getPreAvailablePropsResponse"/>
+
+<xs:element name="sendMessage" type="tns:sendMessage"/>
+
+<xs:element name="sendMessageResponse" type="tns:sendMessageResponse"/>
+
+<xs:element name="serverFault" type="tns:ServerFault"/>
+
+<xs:complexType name="generateActorFromProps">
+<xs:sequence>
+<xs:element name="props" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="generateActorFromPropsResponse">
+<xs:sequence>
+<xs:element name="actorid" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ServerFault">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dispatchAsyncJob">
+<xs:sequence>
+<xs:element name="jobmessageasync" type="tns:jobMessageAsync" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jobMessageAsync">
+<xs:sequence>
+<xs:element name="actorid" type="xs:string"/>
+<xs:element name="message" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dispatchAsyncJobResponse">
+<xs:sequence>
+<xs:element name="jobid" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendMessage">
+<xs:sequence>
+<xs:element name="jobmessage" type="tns:jobMessage" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jobMessage">
+<xs:sequence>
+<xs:element name="actorid" type="xs:string"/>
+<xs:element name="message" type="xs:base64Binary"/>
+<xs:element name="waittime" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendMessageResponse">
+<xs:sequence>
+<xs:element name="resultmessage" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAsyncJobresult">
+<xs:sequence>
+<xs:element name="jobid" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAsyncJobresultResponse">
+<xs:sequence>
+<xs:element name="resultmessage" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="generatePreAvailableActor">
+<xs:sequence>
+<xs:element name="propsid" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="generatePreAvailableActorResponse">
+<xs:sequence>
+<xs:element name="actorid" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getPreAvailableProps">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getPreAvailablePropsResponse">
+<xs:sequence>
+<xs:element name="preavailable" type="tns:propsPreAvailableMessage" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="propsPreAvailableMessage">
+<xs:sequence>
+<xs:element name="actorname" type="xs:string"/>
+<xs:element name="description" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

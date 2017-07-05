@@ -5,9 +5,9 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: docker version
       # get latest CE version
       - run: curl -fsSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | sh
+      - run: docker version
       - run: docker build -t whatever4711/dynoff-glassfish .
       - run: docker images
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
