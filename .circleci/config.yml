@@ -10,5 +10,7 @@ jobs:
       - run: curl -fsSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | sh
       # get latest release candidate (17.06.0-ce-rc4)
       - run: curl -fsSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | CHANNEL=test sh
-      - run: docker build -t app .
+      - run: docker build -t whatever4711/dynoff-glassfish .
       - run: docker history app
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker push whatever4711/dynoff-glassfish:latest
