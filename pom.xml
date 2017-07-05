@@ -95,13 +95,19 @@
             <artifactId>maven-ear-plugin</artifactId>
             <version>2.10.1</version>
             <configuration>
-  <!--            <modules>
+              <modules>
                 <webModule>
-                  <groupId>de.uniba.ktr.mg</groupId>
+                  <groupId>de.uniba.wiai.ktr.mg</groupId>
                   <artifactId>dynOff-Web</artifactId>
                   <contextRoot>/</contextRoot>
                 </webModule>
-              </modules>-->
+                <ejbModule>
+                  <groupId>de.uniba.wiai.ktr.mg</groupId>
+                  <artifactId>dynOff-EJB</artifactId>
+                  <bundleFileName>dynOff-EJB.jar</bundleFileName>
+                </ejbModule>
+              </modules>
+
             </configuration>
           </plugin>
         </plugins>

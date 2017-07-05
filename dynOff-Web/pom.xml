@@ -14,7 +14,7 @@
     <artifactId>dynOff-Web</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>Web application for Glassfish server</name>
+    <name>Web Application for Glassfish Server</name>
 
     <dependencies>
         <dependency>
