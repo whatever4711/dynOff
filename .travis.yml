@@ -1,7 +1,0 @@
-services:
-  - docker
-script:
-  - docker build -t multistage .
-  - docker version
-after_success:
-  - docker images

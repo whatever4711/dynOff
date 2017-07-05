@@ -1,0 +1,11 @@
+machine:
+  services:
+    docker
+
+dependencies:
+  override:
+    - mvn package
+
+test:
+  override:
+    - docker images
