@@ -8,12 +8,12 @@ import java.util.logging.Logger;
 
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.ActorRefTimeWrapper;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.JobTimeWrapper;
-import akka.actor.UntypedActor;
+import akka.actor.AbstractActor;
 
 /**
  * Aktor f�r die Verwaltung von asynchronen Nachrichten.
  */
-public class AsyncMailboxActor extends UntypedActor {
+public class AsyncMailboxActor extends AbstractActor {
 
 	/**
 	 * Logger
@@ -49,15 +49,22 @@ public class AsyncMailboxActor extends UntypedActor {
 	 * @param arg0
 	 *            Nachrichtenobjekt
 	 */
+	//@Override
+	//public void onReceive(Object arg0) throws Exception {
+	//	if (arg0.toString().equals("Init")) {
+	//		initMsgReceived(arg0);
+	//	} else if (arg0.toString().equals("JobMsg")) {
+	//		jobMsgReceived(arg0);
+	//	} else {
+	//		resultMsgReceived(arg0);
+	//	}
+	//}
+
 	@Override
-	public void onReceive(Object arg0) throws Exception {
-		if (arg0.toString().equals("Init")) {
-			initMsgReceived(arg0);
-		} else if (arg0.toString().equals("JobMsg")) {
-			jobMsgReceived(arg0);
-		} else {
-			resultMsgReceived(arg0);
-		}
+	public Receive createReceive() {
+		return receiveBuilder().matchEquals("Init", this::initMsgReceived).
+				matchEquals("JobMsg", this::jobMsgReceived).
+				matchAny(this::resultMsgReceived).build();
 	}
 
 	/**
