@@ -4,6 +4,7 @@ ADD dynOff-ActorsUtility dynOff-ActorsUtility/
 ADD dynOff-EAR dynOff-EAR/
 ADD dynOff-EJB dynOff-EJB/
 ADD dynOff-Web dynOff-Web/
+ADD dynOff-Client dynOff-Client/
 COPY pom.xml .
 RUN mvn package
 
