@@ -1,30 +1,41 @@
 package de.uniba.wiai.ktr.mg.dynoff.client;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import akka.actor.Props;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.actors.TestActor;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.actors.TestMessage;
-import de.uniba.wiai.ktr.mg.dynoff.client.generated.JobMessage;
-import de.uniba.wiai.ktr.mg.dynoff.client.generated.JobMessageAsync;
-import de.uniba.wiai.ktr.mg.dynoff.client.generated.PropsPreAvailableMessage;
-import de.uniba.wiai.ktr.mg.dynoff.client.generated.ServerFault_Exception;
+import de.uniba.wiai.ktr.mg.dynoff.generated.JobMessage;
+import de.uniba.wiai.ktr.mg.dynoff.generated.JobMessageAsync;
+import de.uniba.wiai.ktr.mg.dynoff.generated.PropsPreAvailableMessage;
+import de.uniba.wiai.ktr.mg.dynoff.generated.ServerFault_Exception;
 import de.uniba.wiai.ktr.mg.dynoff.shared.SerializationHelper;
 
 public class TestMain {
 
-	private DynOffWebserviceStub stub = new DynOffWebserviceStub();
+	private DynOffWebserviceStub stub;
 	private String testmsg = "lkasödlfjpowierlksdjfülaskdjfpoiwerksdjfaölsdjfpoweiru";
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			IOException, ServerFault_Exception {
 
-		TestMain test = new TestMain();
+		URL WSDLLocation = new URL("http://localhost:8080/dynOff/DynOffWebservice?wsdl");
+
+		TestMain test = new TestMain(WSDLLocation);
 
 		test.finaltest();
 
+	}
+
+	public TestMain(){
+		stub = new DynOffWebserviceStub();
+	}
+
+	public TestMain(URL wsdl){
+		stub = new DynOffWebserviceStub(wsdl);
 	}
 
 	public void finaltest() throws IOException, ClassNotFoundException,
@@ -58,7 +69,7 @@ public class TestMain {
 		System.out.println("Sending String: " + testmsg + " to actor: "
 				+ actorid);
 
-		TestMessage msg = new TestMessage(testmsg, "", 0, null);
+		TestMessage msg = new TestMessage(testmsg);
 		JobMessage jobmsg = new JobMessage();
 		jobmsg.setActorid(actorid);
 		jobmsg.setWaittime(10000);
@@ -128,7 +139,7 @@ public class TestMain {
 		System.out.println("Sending String: " + testmsg + " to actor: "
 				+ actorid);
 
-		TestMessage msgtosend = new TestMessage(testmsg, "", 0, null);
+		TestMessage msgtosend = new TestMessage(testmsg);
 		byte[] content = SerializationHelper.serialize(msgtosend);
 
 		JobMessageAsync asyncmsg = new JobMessageAsync();
