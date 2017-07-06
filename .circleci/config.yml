@@ -8,7 +8,8 @@ jobs:
       # get latest CE version
       - run: curl -fsSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | sh
       - run: docker version
-      - run: docker build -t whatever4711/dynoff-glassfish .
+      - run: docker build -f Dockerfile.server -t whatever4711/dynoff-glassfish .
+      - run: docker build -f Dockerfile.client -t client .
       - run: docker images
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push whatever4711/dynoff-glassfish:latest

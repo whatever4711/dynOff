@@ -21,8 +21,11 @@ public class TestMain {
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			IOException, ServerFault_Exception {
+				String host = "localhost";
+				if (args.length==1)
+					host = args[0];
 
-		URL WSDLLocation = new URL("http://localhost:8080/dynOff/DynOffWebservice?wsdl");
+		URL WSDLLocation = new URL("http://" + host +":8080/dynOff/DynOffWebservice?wsdl");
 
 		TestMain test = new TestMain(WSDLLocation);
 

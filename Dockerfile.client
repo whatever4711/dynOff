@@ -1,0 +1,16 @@
+FROM maven:3-alpine AS build
+WORKDIR /dynOff
+ADD dynOff-ActorsUtility dynOff-ActorsUtility/
+ADD dynOff-EAR dynOff-EAR/
+ADD dynOff-EJB dynOff-EJB/
+ADD dynOff-Web dynOff-Web/
+ADD dynOff-Client dynOff-Client/
+COPY pom.xml .
+RUN mvn package
+
+
+FROM openjdk:8-jre-alpine
+ENV CLIENT dynOff-Client-1.0-jar-with-dependencies.jar
+ADD client-entrypoint.sh .
+COPY --from=build /dynOff/dynOff-Client/target/${CLIENT} .
+ENTRYPOINT ["./client-entrypoint.sh"]

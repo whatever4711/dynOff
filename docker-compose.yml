@@ -1,0 +1,20 @@
+version: '3'
+
+networks:
+  test:
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    networks:
+      test:
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    networks:
+      test:
+    command: server
