@@ -1,14 +1,14 @@
 package de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.actors;
 
-import akka.actor.UntypedAbstractActor;
+import akka.actor.AbstractActor;
 
 
-public class TestActor extends UntypedAbstractActor {
+public class TestActor extends AbstractActor {
 
-	@Override
-	public void onReceive(Object arg0) throws Exception {
-		TestMessage tmp = (TestMessage) arg0;
-		this.getSender().tell(new TestMessage(tmp.getContent()), getSelf());
-	}
+    @Override
+    public Receive createReceive() {
+        return receiveBuilder().match(TestMessage.class,
+                s -> getSender().tell(new TestMessage(s.getContent()), getSelf())).build();
+    }
 
 }
