@@ -16,7 +16,7 @@ import de.uniba.wiai.ktr.mg.dynoff.webservice.messages.JobMessageAsync;
 import de.uniba.wiai.ktr.mg.dynoff.webservice.messages.PropsPreAvailableMessage;
 
 /**
- * Nach JAX-WS annotierte Klasse f�r die Erzeugung des Webserviceendpunktes.
+ * Nach JAX-WS annotierte Klasse fuer die Erzeugung des Webserviceendpunktes.
  */
 @WebService(portName = "DynOffWSPort", serviceName = "DynOffWebservice", targetNamespace = "http://dynoffws/", endpointInterface = "de.uniba.wiai.ktr.mg.dynoff.webservice.DynOffWS")
 public class WebServiceAccess implements DynOffWS {

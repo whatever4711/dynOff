@@ -10,9 +10,16 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>de.uniba.wiai.ktr.mg</groupId>
+    <properties>
+        <base>glassfish:4.1-jdk8</base>
+        <admin.pwd>12wert45</admin.pwd>
+        <bundle>${project.artifactId}-${project.version}.${project.packaging}</bundle>
+        <image.name>unibaktr/dynoff-ear:${project.version}</image.name>
+    </properties>
+
+    <groupId>${project.parent.groupId}</groupId>
     <artifactId>dynOff-EAR</artifactId>
-    <version>1.0</version>
+    <version>${project.parent.version}</version>
     <packaging>ear</packaging>
     <name>Enterprise Archive</name>
 
@@ -38,6 +45,32 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>${image.name}</name>
+                            <alias>glassfish</alias>
+                            <build>
+                                <filter>@</filter>
+                                <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
+                                <assembly>
+                                    <descriptorRef>artifact-with-dependencies</descriptorRef>
+                                </assembly>
+                            </build>
+                            <run>
+                                <ports>
+                                    <port>4848:4848</port>
+                                    <port>8080:8080</port>
+                                    <port>8181:8181</port>
+                                </ports>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
             </plugin>
         </plugins>
     </build>

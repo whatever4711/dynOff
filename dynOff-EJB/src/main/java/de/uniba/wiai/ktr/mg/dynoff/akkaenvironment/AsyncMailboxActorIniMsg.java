@@ -6,7 +6,7 @@ import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.ActorRefTimeWrapper;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.JobTimeWrapper;
 
 /**
- * Initialisierungsnachricht f�r die Daten�bergabe an AsyncMailboxActor
+ * Initialisierungsnachricht fuer die Datenuebergabe an AsyncMailboxActor
  */
 public class AsyncMailboxActorIniMsg {
 

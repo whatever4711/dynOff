@@ -30,42 +30,42 @@ import akka.util.Timeout;
 public class Actorenvironment {
 
 	/**
-	 * Ausf�hrungssystem der Aktoren
+	 * Ausfuehrungssystem der Aktoren
 	 */
 	private ActorSystem actorsys;
 
 	/**
-	 * Enth�lt alle aktiven Aktorreferenzen, Shared Memory mit
+	 * Enthaelt alle aktiven Aktorreferenzen, Shared Memory mit
 	 * AsyncMailboxActor.
 	 */
 	private ConcurrentHashMap<String, ActorRefTimeWrapper> actorRefTable;
 
 	/**
-	 * Enth�lt alle fertigen, asynchronen Antworten, Shared Memory mit
+	 * Enthaelt alle fertigen, asynchronen Antworten, Shared Memory mit
 	 * AsyncMailboxActor.
 	 */
 	private ConcurrentHashMap<String, JobTimeWrapper> jobsTable;
 
 	/**
-	 * Enth�lt alle explizit vorgehaltenen Props-Instanzen f�r die
+	 * Enthaelt alle explizit vorgehaltenen Props-Instanzen fuer die
 	 * Aktorerzeugung
 	 */
 	private ConcurrentHashMap<String, PropsPreAvailableWrapper> actorPreTable;
 
 	/**
-	 * Referenz auf den Aktor f�r die Verwaltung von asynchronen Nachrichten
+	 * Referenz auf den Aktor fuer die Verwaltung von asynchronen Nachrichten
 	 */
 	private ActorRef asyncActor;
 
 	/**
-	 * Vorhaltezeit in Millisekunden f�r Aktorreferenzen und asynchrone
+	 * Vorhaltezeit in Millisekunden fuer Aktorreferenzen und asynchrone
 	 * Nachrichten. Wird an asyncActor beim initialen Programmstart mit
-	 * AsyncMailboxActorIniMsg �bergeben und in ihm nochmals gehalten.
+	 * AsyncMailboxActorIniMsg uebergeben und in ihm nochmals gehalten.
 	 */
 	private long storageTime = 600000;
 
 	/**
-	 * Constructor f�r die Instanziierung durch die Java EE-Laufzeitumgebung.
+	 * Constructor fuer die Instanziierung durch die Java EE-Laufzeitumgebung.
 	 * Legt alle Tabellen an und initialisiert den AsyncMailboxActor.
 	 */
 	public Actorenvironment() {
@@ -82,8 +82,8 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * Erstellt die Inhalte von actorPreTable. Muss aktuell noch h�ndisch
-	 * angepasst werden, sollten weitere Aktoren hinzugef�gt werden m�ssen.
+	 * Erstellt die Inhalte von actorPreTable. Muss aktuell noch haendisch
+	 * angepasst werden, sollten weitere Aktoren hinzugefuegt werden muessen.
 	 */
 	private void generateActorPreTable() {
 		actorPreTable.put(
@@ -94,8 +94,8 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * Erzeugt aus der �bergebenen Props-Instanz einen Aktor und gibt dessen
-	 * Identifikationsstring zur�ck.
+	 * Erzeugt aus der uebergebenen Props-Instanz einen Aktor und gibt dessen
+	 * Identifikationsstring zurueck.
 	 * 
 	 * @param props
 	 *            Props-Instanz aus der Class-Instanz des Aktors
@@ -111,7 +111,7 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * Sendet eine Nachricht mit synchroner Antwort an einen Aktor. L�uft die
+	 * Sendet eine Nachricht mit synchroner Antwort an einen Aktor. Laeuft die
 	 * Wartezeit ab, wird eine Exception geworfen.
 	 * 
 	 * @param actorid
@@ -146,7 +146,7 @@ public class Actorenvironment {
 
 	/**
 	 * Leitet einen asynchronen Auftrag weiter und gibt einen
-	 * Jobidentifikationsstring zur�ck, f�r den Abruf des Ergebnisses �ber
+	 * Jobidentifikationsstring zurueck, fuer den Abruf des Ergebnisses ueber
 	 * getAsyncJobResult(String).
 	 * 
 	 * @param actorId
@@ -178,7 +178,7 @@ public class Actorenvironment {
 	 *            Jobidentifikationsstring
 	 * @return Antwortobjekt
 	 * @throws Exception
-	 *             Wird geworfen wenn keine Antwort f�r den
+	 *             Wird geworfen wenn keine Antwort fuer den
 	 *             Jobidentifikationsstring vorhanden ist.
 	 */
 	public Object getAsyncJobResult(String jobId) {
@@ -191,7 +191,7 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * L�scht alle Aktorreferenzen und Ergebnisnachrichten, deren Vorhaltezeit
+	 * Loescht alle Aktorreferenzen und Ergebnisnachrichten, deren Vorhaltezeit
 	 * abgelaufen ist.
 	 */
 	public void cleanup() {
@@ -213,7 +213,7 @@ public class Actorenvironment {
 	}
 
 	/**
-	 * Gibt die actorPreTable zur�ck.
+	 * Gibt die actorPreTable zurueck.
 	 * 
 	 * @return actorPreTable
 	 */
@@ -225,7 +225,7 @@ public class Actorenvironment {
 	 * Erzeugt einen Aktor aus den in actorPreTable vorhaltenen Props-Instanzen
 	 * 
 	 * @param propsid
-	 *            Vollqualifizierender Name der Aktorklasse, erh�ltlich �ber
+	 *            Vollqualifizierender Name der Aktorklasse, erhaeltlich ueber
 	 *            getActorPreTable()
 	 * @return Aktoridentifikationsstring
 	 */

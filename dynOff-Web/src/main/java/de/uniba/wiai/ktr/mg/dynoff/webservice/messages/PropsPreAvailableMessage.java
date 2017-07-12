@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * Nachrichtenklasse f�r die �bertragung Eintr�gen aus actorPreTable in
+ * Nachrichtenklasse fuer die Uebertragung von Eintraegen aus actorPreTable in
  * Actorenvironment per JAX-WS
  */
 @XmlType

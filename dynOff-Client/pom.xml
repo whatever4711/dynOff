@@ -3,11 +3,17 @@
 
   <!-- Basic Properties -->
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.uniba.wiai.ktr.mg</groupId>
+  <groupId>${project.parent.groupId}</groupId>
   <artifactId>dynOff-Client</artifactId>
-  <version>1.0</version>
+  <version>${project.parent.version}</version>
   <packaging>jar</packaging>
   <name>DynOff Client Application</name>
+
+    <properties>
+        <base>openjdk:8-jre-alpine</base>
+        <bundle>${project.artifactId}-${project.version}.${project.packaging}</bundle>
+        <image.name>unibaktr/dynoff-client:${project.version}</image.name>
+    </properties>
 
     <parent>
         <groupId>de.uniba.wiai.ktr.mg</groupId>
@@ -18,7 +24,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.uniba.wiai.ktr.mg</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>dynOff-ActorsUtility</artifactId>
             <scope>compile</scope>
         </dependency>
@@ -145,6 +151,29 @@
                       </configuration>
                   </execution>
               </executions>
+          </plugin>
+
+          <plugin>
+              <groupId>io.fabric8</groupId>
+              <artifactId>docker-maven-plugin</artifactId>
+              <configuration>
+                  <images>
+                      <image>
+                          <name>${image.name}</name>
+                          <alias>client</alias>
+                          <build>
+                              <filter>@</filter>
+                              <dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
+                              <assembly>
+                                  <descriptorRef>artifact-with-dependencies</descriptorRef>
+                              </assembly>
+                          </build>
+                          <run>
+                              <cmd>141.13.92.6</cmd>
+                          </run>
+                      </image>
+                  </images>
+              </configuration>
           </plugin>
       </plugins>
   </build>

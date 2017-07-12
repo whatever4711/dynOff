@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * Nachrichtenklasse f�r die �bertragung von synchronen Nachrichten per JAX-WS
+ * Nachrichtenklasse fuer die Uebertragung von synchronen Nachrichten per JAX-WS
  */
 @XmlType
 public class JobMessage {

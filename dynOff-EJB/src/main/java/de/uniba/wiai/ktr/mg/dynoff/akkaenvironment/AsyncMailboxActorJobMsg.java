@@ -1,7 +1,7 @@
 package de.uniba.wiai.ktr.mg.dynoff.akkaenvironment;
 
 /**
- * Nachricht f�r die Weiterleitung von asynchronen Nachrichten f�r die
+ * Nachricht fuer die Weiterleitung von asynchronen Nachrichten fuer die
  * Verwaltung durch AsyncMailboxActor.
  */
 public class AsyncMailboxActorJobMsg {

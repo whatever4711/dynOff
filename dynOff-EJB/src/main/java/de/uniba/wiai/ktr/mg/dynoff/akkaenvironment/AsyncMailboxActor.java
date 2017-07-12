@@ -11,7 +11,7 @@ import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.JobTimeWrapper;
 import akka.actor.AbstractActor;
 
 /**
- * Aktor f�r die Verwaltung von asynchronen Nachrichten.
+ * Aktor fuer die Verwaltung von asynchronen Nachrichten.
  */
 public class AsyncMailboxActor extends AbstractActor {
 
@@ -21,30 +21,30 @@ public class AsyncMailboxActor extends AbstractActor {
 	Logger logger = Logger.getLogger(AsyncMailboxActor.class.getName());
 
 	/**
-	 * Enth�lt alle aktiven Aktorreferenzen, Shared Memory mit Actorenvironment.
+	 * Enthaelt alle aktiven Aktorreferenzen, Shared Memory mit Actorenvironment.
 	 */
 	private ConcurrentHashMap<String, ActorRefTimeWrapper> actorRefTable;
 
 	/**
-	 * Enth�lt alle fertigen, asynchronen Antworten, Shared Memory mit
+	 * Enthaelt alle fertigen, asynchronen Antworten, Shared Memory mit
 	 * Actorenvironment.
 	 */
 	private ConcurrentHashMap<String, JobTimeWrapper> jobsTable;
 
 	/**
-	 * Hilfstabelle f�r die Verwaltung von asynchronen Auftr�gen, bis zum
+	 * Hilfstabelle fuer die Verwaltung von asynchronen Auftraegen, bis zum
 	 * Eintreffen deren Antwort.
 	 */
 	private Hashtable<String, ConcurrentLinkedQueue<JobTimeWrapper>> openJobs = new Hashtable<>();
 
 	/**
-	 * Vorhaltezeit in Millisekunden f�r Aktorreferenzen und asynchrone
-	 * Nachrichten. Wird prim�r in Actorenvironment gehalten.
+	 * Vorhaltezeit in Millisekunden fuer Aktorreferenzen und asynchrone
+	 * Nachrichten. Wird primaer in Actorenvironment gehalten.
 	 */
 	private long storageTime;
 
 	/**
-	 * Methode aus UntypedActor. �berschrieben f�r die Nachrichtenverarbeitung.
+	 * Methode aus UntypedActor. ueberschrieben fuer die Nachrichtenverarbeitung.
 	 * 
 	 * @param arg0
 	 *            Nachrichtenobjekt
@@ -81,9 +81,9 @@ public class AsyncMailboxActor extends AbstractActor {
 	}
 
 	/**
-	 * Dient der Verarbeitung von neuen, asynchronen Auftr�gen. Legt eine
+	 * Dient der Verarbeitung von neuen, asynchronen Auftraegen. Legt eine
 	 * Postkastenqueue in openJobs an und schickt den Jobidentifikationsstring
-	 * zur�ck.
+	 * zurueck.
 	 * 
 	 * @param msg
 	 *            Nachrichtenobjekt
@@ -142,7 +142,7 @@ public class AsyncMailboxActor extends AbstractActor {
 	}
 
 	/**
-	 * Entfernt abgelaufene Auftr�ge aus openJobs
+	 * Entfernt abgelaufene Auftraege aus openJobs
 	 */
 	private void cleanUp() {
 		Collection<ConcurrentLinkedQueue<JobTimeWrapper>> col = openJobs

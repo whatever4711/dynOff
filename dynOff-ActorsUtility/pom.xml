@@ -10,9 +10,9 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>de.uniba.wiai.ktr.mg</groupId>
+    <groupId>${project.parent.groupId}</groupId>
     <artifactId>dynOff-ActorsUtility</artifactId>
-    <version>1.0</version>
+    <version>${project.parent.version}</version>
     <packaging>jar</packaging>
     <name>Shared Libraries</name>
 

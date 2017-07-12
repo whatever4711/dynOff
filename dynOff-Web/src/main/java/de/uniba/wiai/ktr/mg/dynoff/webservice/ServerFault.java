@@ -3,7 +3,7 @@ package de.uniba.wiai.ktr.mg.dynoff.webservice;
 import javax.xml.ws.WebFault;
 
 /**
- * Hilfsexception f�r die Fehler�bertragung per JAX-WS
+ * Hilfsexception fuer die Fehleruebertragung per JAX-WS
  */
 @WebFault(name = "serverFault")
 public class ServerFault extends Exception {

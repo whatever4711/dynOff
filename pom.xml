@@ -10,7 +10,11 @@
   <name>DynOff Enterprise Application</name>
 
   <properties>
-    <client.main>de.uniba.wiai.ktr.mg.dynoff.client.TestMain</client.main>
+    <client.main>${project.groupId}.dynoff.client.TestMain</client.main>
+    <docker.maven.plugin.version>0.21.0</docker.maven.plugin.version>
+    <javax.javaee-api.version>7.0</javax.javaee-api.version>
+    <junit.version>4.12</junit.version>
+    <com.typesafe.akka.akka.version>2.5.3</com.typesafe.akka.akka.version>
   </properties>
 
   <modules>
@@ -26,52 +30,53 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>de.uniba.wiai.ktr.mg</groupId>
+        <groupId>${project.groupId}</groupId>
         <artifactId>dynOff-EJB</artifactId>
-        <version>1.0</version>
+        <version>${project.version}</version>
         <type>ejb</type>
           <scope>compile</scope>
       </dependency>
       <dependency>
-        <groupId>de.uniba.wiai.ktr.mg</groupId>
+        <groupId>${project.groupId}</groupId>
         <artifactId>dynOff-Web</artifactId>
-        <version>1.0</version>
+        <version>${project.version}</version>
         <type>war</type>
         <scope>compile</scope>
       </dependency>
         <dependency>
-            <groupId>de.uniba.wiai.ktr.mg</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>dynOff-ActorsUtility</artifactId>
-            <version>1.0</version>
+            <version>${project.version}</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
       <dependency>
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
-        <version>7.0</version>
+        <version>${javax.javaee-api.version}</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.12</version>
+        <version>${junit.version}</version>
       </dependency>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-actor_2.12</artifactId>
-            <version>2.5.3</version>
+            <version>${com.typesafe.akka.akka.version}</version>
         </dependency>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-testkit_2.12</artifactId>
-            <version>2.5.3</version>
+            <version>${com.typesafe.akka.akka.version}</version>
         </dependency>
     </dependencies>
   </dependencyManagement>
 
       <build>
-        <plugins>
+        <pluginManagement>
+          <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
@@ -109,12 +114,12 @@
               <configuration>
                 <modules>
                   <webModule>
-                    <groupId>de.uniba.wiai.ktr.mg</groupId>
+                    <groupId>${project.groupId}</groupId>
                     <artifactId>dynOff-Web</artifactId>
                     <contextRoot>/dynOff</contextRoot>
                   </webModule>
                   <ejbModule>
-                    <groupId>de.uniba.wiai.ktr.mg</groupId>
+                    <groupId>${project.groupId}</groupId>
                     <artifactId>dynOff-EJB</artifactId>
                     <bundleFileName>dynOff-EJB.jar</bundleFileName>
                   </ejbModule>
@@ -129,7 +134,30 @@
           <artifactId>jaxws-maven-plugin</artifactId>
           <version>2.4.1</version>
           </plugin>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>${docker.maven.plugin.version}</version>
+            <configuration>
+              <logDate>none</logDate>
+              <images>
+                <image>
+                  <alias>server</alias>
+                  <name>unibaktr/dynoff-ear:${project.version}</name>
+                  <run>
+
+                  </run>
+
+                </image>
+                <image>
+                  <alias>client</alias>
+                  <name>unibaktr/dynoff-client:${project.version}</name>
+                </image>
+              </images>
+            </configuration>
+          </plugin>
         </plugins>
+        </pluginManagement>
       </build>
 
       <profiles>

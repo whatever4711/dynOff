@@ -10,15 +10,15 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>de.uniba.wiai.ktr.mg</groupId>
+    <groupId>${project.parent.groupId}</groupId>
     <artifactId>dynOff-EJB</artifactId>
-    <version>1.0</version>
+    <version>${project.parent.version}</version>
     <packaging>ejb</packaging>
     <name>Java Beans Module</name>
 
     <dependencies>
         <dependency>
-            <groupId>de.uniba.wiai.ktr.mg</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>dynOff-ActorsUtility</artifactId>
             <type>jar</type>
             <scope>compile</scope>

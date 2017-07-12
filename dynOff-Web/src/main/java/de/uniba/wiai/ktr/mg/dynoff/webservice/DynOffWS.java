@@ -35,7 +35,7 @@ public interface DynOffWS {
 	 *            In JobMessage gekapselte Nachricht
 	 * @return Serialisiertes Antwortobjekt
 	 * @throws ServerFault
-	 *             Exception f�r die die Fehler�bertragung per JAX-WS
+	 *             Exception fuer die Fehleruebertragung per JAX-WS
 	 */
 	@WebMethod
 	@WebResult(name = "resultmessage")
@@ -48,7 +48,7 @@ public interface DynOffWS {
 	 *            In JobMessageAsync gekapselte Nachricht
 	 * @return Postkastenreferenzstring
 	 * @throws ServerFault
-	 *             Exception f�r die die Fehler�bertragung per JAX-WS
+	 *             Exception fuer die Fehleruebertragung per JAX-WS
 	 */
 	@WebMethod
 	@WebResult(name = "jobid")
@@ -62,14 +62,14 @@ public interface DynOffWS {
 	 *            Postkastenreferenzstring
 	 * @return Serialisiertes Antwortobjekt
 	 * @throws ServerFault
-	 *             Exception f�r die die Fehler�bertragung per JAX-WS
+	 *             Exception fuer die Fehleruebertragung per JAX-WS
 	 */
 	@WebMethod
 	@WebResult(name = "resultmessage")
 	public byte[] getAsyncJobresult(@WebParam(name = "jobid") String jobid) throws ServerFault;
 
 	/**
-	 * �bertr�gt die Inhalte von actorPreTable aus Actorenvironment
+	 * Uebertraegt die Inhalte von actorPreTable aus Actorenvironment
 	 * 
 	 * @return actorPreTable aus Actorenvironment
 	 */
@@ -81,11 +81,11 @@ public interface DynOffWS {
 	 * Erzeugt einen Aktor aus den in actorPreTable vorhaltenen Props-Instanzen
 	 * 
 	 * @param propsid
-	 *            Vollqualifizierender Name der Aktorklasse, erh�ltlich �ber
+	 *            Vollqualifizierender Name der Aktorklasse, erhaeltlich ueber
 	 *            getActorPreTable()
 	 * @return Aktoridentifikationsstring
 	 * @throws ServerFault
-	 *             Exception f�r die die Fehler�bertragung per JAX-WS
+	 *             Exception fuer die Fehleruebertragung per JAX-WS
 	 */
 	@WebMethod
 	@WebResult(name = "actorid")
