@@ -145,13 +145,25 @@
                   <alias>server</alias>
                   <name>unibaktr/dynoff-ear:${project.version}</name>
                   <run>
-
+                    <namingStrategy>alias</namingStrategy>
+                    <wait>
+                      <time>3600000</time>
+                      <log>JMXStartupService has started JMXConnector on JMXService</log>
+                    </wait>
                   </run>
-
                 </image>
                 <image>
                   <alias>client</alias>
                   <name>unibaktr/dynoff-client:${project.version}</name>
+                  <run>
+                    <namingStrategy>alias</namingStrategy>
+                    <links>server</links>
+                    <cmd>server</cmd>
+                    <wait>
+                      <time>3600000</time>
+                      <log>All Tests are finished.</log>
+                    </wait>
+                  </run>
                 </image>
               </images>
             </configuration>

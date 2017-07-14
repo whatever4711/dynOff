@@ -79,7 +79,7 @@ public class WebServiceAccess implements DynOffWS {
 	 */
 	@Override
 	public String dispatchAsyncJob(JobMessageAsync msg) throws ServerFault {
-
+		logger.info("Dispatched job to ACTOR-ID: " + msg.getActorid());
 		try {
 			return actorenv.dispatchAsyncJob(msg.getActorid(),
 					SerializationHelper.deserialize(msg.getMsg()));

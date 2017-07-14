@@ -1,7 +1,9 @@
 package de.uniba.wiai.ktr.mg.dynoff.akkaenvironment;
 
 import java.util.Collection;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -12,13 +14,11 @@ import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.actors.TestActor;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.ActorRefTimeWrapper;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.JobTimeWrapper;
 import de.uniba.wiai.ktr.mg.dynoff.akkaenvironment.wrapper.PropsPreAvailableWrapper;
-import scala.concurrent.Await;
-import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import akka.pattern.Patterns;
+import akka.pattern.PatternsCS;
 import akka.util.Timeout;
 
 /**
@@ -28,6 +28,8 @@ import akka.util.Timeout;
 @Singleton(name = "ejb/Actorenvironment")
 @LocalBean
 public class Actorenvironment {
+
+	Logger logger = Logger.getLogger(Actorenvironment.class.getName());
 
 	/**
 	 * Ausfuehrungssystem der Aktoren
@@ -137,9 +139,9 @@ public class Actorenvironment {
 			tmp.setTimeout(System.currentTimeMillis() + storageTime);
 			ActorRef actor = tmp.getActorref();
 			Timeout timeout = new Timeout(Duration.create(waittime, "seconds"));
-			Future<Object> future = Patterns.ask(actor, msg, timeout);
+			CompletableFuture<Object> future = PatternsCS.ask(actor, msg, timeout).toCompletableFuture();
 			Object result;
-			result = Await.result(future, timeout.duration());
+			result = future.get();
 			return result;
 		}
 	}
@@ -158,13 +160,13 @@ public class Actorenvironment {
 	 * @throws Exception
 	 *             Wird geworfen wenn der Zielaktor nicht existiert.
 	 */
-	public String dispatchAsyncJob(String actorId, Object msg) throws Exception {
+	public String dispatchAsyncJob(String actorId, Object msg) throws Exception{
+		logger.info("Send job " + msg.toString() + " to actor " + actorId);
 		AsyncMailboxActorJobMsg jobMsg = new AsyncMailboxActorJobMsg(actorId,
 				msg);
 		Timeout timeout = new Timeout(Duration.create(3, "seconds"));
-		Future<Object> future = Patterns.ask(asyncActor, jobMsg, timeout);
-		jobMsg = (AsyncMailboxActorJobMsg) Await.result(future,
-				timeout.duration());
+		CompletableFuture<Object> future = PatternsCS.ask(asyncActor, jobMsg, timeout).toCompletableFuture();
+		jobMsg = (AsyncMailboxActorJobMsg) future.get();
 		if (jobMsg.getActorId() == null) {
 			throw new Exception("Actor not available.");
 		}

@@ -43,27 +43,10 @@ public class AsyncMailboxActor extends AbstractActor {
 	 */
 	private long storageTime;
 
-	/**
-	 * Methode aus UntypedActor. ueberschrieben fuer die Nachrichtenverarbeitung.
-	 * 
-	 * @param arg0
-	 *            Nachrichtenobjekt
-	 */
-	//@Override
-	//public void onReceive(Object arg0) throws Exception {
-	//	if (arg0.toString().equals("Init")) {
-	//		initMsgReceived(arg0);
-	//	} else if (arg0.toString().equals("JobMsg")) {
-	//		jobMsgReceived(arg0);
-	//	} else {
-	//		resultMsgReceived(arg0);
-	//	}
-	//}
-
 	@Override
 	public Receive createReceive() {
-		return receiveBuilder().matchEquals("Init", this::initMsgReceived).
-				matchEquals("JobMsg", this::jobMsgReceived).
+		return receiveBuilder().matchUnchecked(AsyncMailboxActorIniMsg.class, this::initMsgReceived).
+				matchUnchecked(AsyncMailboxActorJobMsg.class, this::jobMsgReceived).
 				matchAny(this::resultMsgReceived).build();
 	}
 
@@ -74,6 +57,7 @@ public class AsyncMailboxActor extends AbstractActor {
 	 *            Nachrichtenobjekt
 	 */
 	private void initMsgReceived(Object msg) {
+		logger.info("Init Message received: " + msg.getClass().toString());
 		AsyncMailboxActorIniMsg arg = (AsyncMailboxActorIniMsg) msg;
 		jobsTable = arg.getJobstable();
 		storageTime = arg.getStorageTime();
@@ -89,6 +73,7 @@ public class AsyncMailboxActor extends AbstractActor {
 	 *            Nachrichtenobjekt
 	 */
 	private void jobMsgReceived(Object msg) {
+		logger.info("Job Message received: " + msg.getClass().toString());
 		cleanUp();
 		AsyncMailboxActorJobMsg jobMsg = (AsyncMailboxActorJobMsg) msg;
 
@@ -135,10 +120,15 @@ public class AsyncMailboxActor extends AbstractActor {
 	 *            Nachrichtenobjekt
 	 */
 	private void resultMsgReceived(Object msg) {
-		JobTimeWrapper result = openJobs.get(getSender().toString()).poll();
-		result.setTimeout(System.currentTimeMillis() + storageTime);
-		result.setResultMsg(msg);
-		jobsTable.put(result.getJobId(), result);
+		logger.info("Result Message received: " + msg.getClass().toString());
+		logger.info("OpenJobs Size: " + openJobs.size());
+		if(openJobs.size() > 0) {
+			JobTimeWrapper result = openJobs.get(getSender().toString()).poll();
+			logger.info("Result Wrapper: " + result.getResultMsg().toString());
+			result.setTimeout(System.currentTimeMillis() + storageTime);
+			result.setResultMsg(msg);
+			jobsTable.put(result.getJobId(), result);
+		}
 	}
 
 	/**
